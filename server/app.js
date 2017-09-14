@@ -5,9 +5,24 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var config = require('./config/env');
+
+// 引入数据库
+var mongoose = require('mongoose');
+// 连接数据库.
+mongoose.connect(config.mongo.uri, config.mongo.options);
+var modelsPath = path.join(__dirname, 'model');
+fs.readdirSync(modelsPath).forEach(function (file) {
+	if (/(.*)\.(js$|coffee$)/.test(file)) {
+		require(modelsPath + '/' + file);
+	}
+});
+
+//mongoose promise 风格
+mongoose.Promise = global.Promise;
+
 var index = require('./routes/index');
 var users = require('./routes/users');
-var goods = require('./routes/goods');
 
 var app = express();
 
@@ -23,34 +38,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 访问拦截 就是所有访问都走这个逻辑
-app.use(function(req,res,next){
-  if(req.cookies.userId){
-    next();
-  }else{
-    if(
-      // 加入白名单
-      req.originalUrl == '/users/login' 
-      || req.originalUrl == '/users/logout' 
-      || req.path == '/goods/list'
-  ){
-    // console.log(req);
-    // console.log(req);
-      next();
-    }else{
-      res.json({
-        status:'1',
-        msg:'当前未登录',
-        result:''
-      })
-    }
-  }
-})
-
-
 app.use('/', index);
 app.use('/users', users);
-app.use('/goods', goods);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
