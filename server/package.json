@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=development node ./bin/www"
+    "start": "cross-env NODE_ENV=production ./node_modules/.bin/nodemon bin/www",
+    "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon bin/www"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -12,9 +13,38 @@
     "express": "~4.15.2",
     "jade": "~1.11.0",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "bluebird": "^3.4.6",
+    "bunyan": "^1.8.1",
+    "ccap": "^0.6.10",
+    "composable-middleware": "^0.3.0",
+    "compression": "^1.6.2",
+    "connect-redis": "^3.1.0",
+    "cors": "^2.8.1",
+    "errorhandler": "^1.4.3",
+    "express-jwt": "^5.0.0",
+    "express-session": "^1.14.1",
+    "ioredis": "^2.4.0",
+    "jsonwebtoken": "^7.1.9",
+    "lodash": "^4.16.2",
+    "markdown-it": "^8.0.0",
+    "method-override": "^2.3.6",
+    "moment": "^2.15.1",
+    "mongoose": "^4.6.2",
+    "multer": "^1.2.0",
+    "passport": "^0.3.2",
+    "passport-github": "^1.1.0",
+    "passport-local": "^1.0.0",
+    "passport-qq": "0.0.3",
+    "passport-weibo": "^0.1.2",
+    "qiniu": "^6.1.11"
   },
   "devDependencies": {
-    "mongoose": "^4.11.11"
+    "cors": "^2.8.4",
+    "cross-env": "^5.0.5",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.11.11",
+    "nodemon": "^1.12.1",
+    "passport": "^0.4.0"
   }
 }

@@ -141,7 +141,7 @@
         // console.log(this.goodsList);
         this.$http.get("/goods/list",{params:param}).then((result) => {
           let res = result.data;
-          if(res.status == 0){
+          // if(res.status == 0){
             if(flag){
               this.goodsList = this.goodsList.concat(res.result);
               // 判断当数据加载完了就截停
@@ -156,11 +156,11 @@
               this.busy = false;
             }
             // console.log(this.GoodsList);
-          }else{
+
             // 系统正忙
             // alert("系统正忙")
             // this.busy = false;
-          }
+
           
         })
       },
