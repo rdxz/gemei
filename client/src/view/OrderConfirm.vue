@@ -132,7 +132,7 @@ import NavHeader from '@/components/Header'
   import NavFooter from '@/components/Footer'
   import NavBread from '@/components/NavBread'
   import Modal from '@/components/Modal'
-  import {currency} from './../util/currency'
+  import {currency} from './../utils/currency'
   import axios from 'axios'
   export default{
       data(){

@@ -21,10 +21,8 @@ Vue.use(Vuex)
 Axios.defaults.baseURL = apiConfig.baseUrl;
 
 // css
-import '@/assets/css/base'
-import '@/assets/css/login'
-import '@/assets/css/product'
-import '@/assets/css/checkout'
+import '@/assets/css/index'
+
 Vue.config.productionTip = false
 
 Vue.use(VueLazyLoad,{

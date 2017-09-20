@@ -21,7 +21,8 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 
 //mongoose promise 风格
 mongoose.Promise = global.Promise;
-
+// 初始化数据
+if(config.seedDB) { require('./config/seed'); }
 var index = require('./routes/index');
 var users = require('./routes/users');
 

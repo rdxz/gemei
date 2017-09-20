@@ -41,7 +41,7 @@
   import NavHeader from '@/components/Header'
   import NavFooter from '@/components/Footer'
   import NavBread from '@/components/NavBread'
-  import {currency} from './../util/currency'
+  import {currency} from './../utils/currency'
 
   import Modal from '@/components/Modal'
   import axios from 'axios'

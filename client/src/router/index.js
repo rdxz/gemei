@@ -6,11 +6,13 @@ import Cart from '@/view/Cart'
 import Address from '@/view/Address'
 import OrderConfirm from '@/view/OrderConfirm'
 import OrderSuccess from '@/view/OrderSuccess'
+import Login from '@/view/Login'
+import {isLogin} from '../utils/authService'
 
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   mode:'hash',
   routes: [
     {
@@ -21,7 +23,10 @@ export default new Router({
     {
       path: '/cart',
       name: 'Cart',
-      component: Cart
+      component: Cart,
+      meta:{
+        requiresAuth: true
+      },
     },
     {
       path: '/address',
@@ -37,7 +42,38 @@ export default new Router({
       path: '/orderSuccess',
       name: 'OrderSuccess',
       component:OrderSuccess
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component:Login
     }
-
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  // to.matched.some(
+  //   function(record){
+  //     console.log(record.meta)
+  //   }
+  // )
+  // console.log(to.matched.some(record => record.meta.requiresAuth))
+  if (to.matched.some(record => record.meta.goTop)) {
+    window.scroll(0, 0) 
+  }
+
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // console.log(record.meta.requiresAuth)
+    if (!isLogin()) {
+      return next({path: '/pages/login'})
+    }
+  }
+  if (to.matched.some(record => record.meta.requiresNotAuth)) {
+    if (isLogin()) {
+      return next({path: '/'})
+    }
+  }
+  next()
+})
+
+export default router
