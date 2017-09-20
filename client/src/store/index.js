@@ -8,9 +8,9 @@ import * as actions from './actions'
 
 // import * as actions from './actions'
 // import * as getters from './getters'
-import Axios from 'axios'
-import VueAxios from 'vue-axios'
-Vue.use(VueAxios, Axios)
+// import Axios from 'axios'
+// import VueAxios from 'vue-axios'
+// Vue.use(VueAxios, Axios)
 
 Vue.use(Vuex)
 

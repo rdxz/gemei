@@ -188,19 +188,24 @@
         this.$http.post("/goods/addCart",{
           productId:productId
         }).then((res) => {
-            var res = res.data;
-            if(res.status == 1){
-              this.mdShow = true;
-            }else{
-              this.mdShowCart=true;
-              // alert('加入购物车成功')
-            }
+            console.log(res)
+            // var res = res.data;
+            // if(res.status == 1){
+            //   this.mdShow = true;
+            // }else{
+            //   this.mdShowCart=true;
+            //   // alert('加入购物车成功')
+            // }
             // if(res.status == 0){
             //   alert('加入购物车成功')
             // }else{
             //   alert('加入购物车失败')
             // }
         })
+        
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
       },
       closeModal(){
         this.mdShow = false;

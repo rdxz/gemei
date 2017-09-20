@@ -65,7 +65,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // console.log(record.meta.requiresAuth)
     if (!isLogin()) {
-      return next({path: '/pages/login'})
+      return next({path: '/login'})
     }
   }
   if (to.matched.some(record => record.meta.requiresNotAuth)) {

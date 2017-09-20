@@ -27,7 +27,7 @@ const actions = {
         saveCookie('token',token)
         store.dispatch('getUserInfo')
         store.commit(LOGIN_SUCCESS, {token: token })
-        // router.push({path:'/'})
+        router.push({path:'/'})
         console.log(response)
       }, response => {
         getCaptchaUrl(store)

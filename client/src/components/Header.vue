@@ -83,7 +83,7 @@
       }
     },
     mounted: function(){
-      this.checkLogin();
+      // this.checkLogin();
       // console.log(this.nickName)
     },
     computed: {

@@ -6,19 +6,19 @@ import router from './router'
 import VueLazyLoad from 'vue-lazyload'
 import Vuex from 'vuex'
 import apiConfig from '../config/api.config'
-
+// import Service from './api'
 // register globally
 import infiniteScroll from 'vue-infinite-scroll'
 Vue.use(infiniteScroll)
 
 // import axios
-import Axios from 'axios'
-import VueAxios from 'vue-axios'
+// import Axios from 'axios'
+// import VueAxios from 'vue-axios'
 import store from './store'
-Vue.use(VueAxios, Axios)
+// Vue.use(VueAxios, Axios)
 Vue.use(Vuex)
 
-Axios.defaults.baseURL = apiConfig.baseUrl;
+// Axios.defaults.baseURL = apiConfig.baseUrl;
 
 // css
 import '@/assets/css/index'
