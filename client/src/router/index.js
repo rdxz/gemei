@@ -7,6 +7,7 @@ import Address from '@/view/Address'
 import OrderConfirm from '@/view/OrderConfirm'
 import OrderSuccess from '@/view/OrderSuccess'
 import Login from '@/view/Login'
+import Register from '@/view/Register'
 import {isLogin} from '../utils/authService'
 
 
@@ -47,6 +48,11 @@ const router =  new Router({
       path: '/login',
       name: 'Login',
       component:Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component:Register
     }
   ]
 })

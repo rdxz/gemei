@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-// var Logs = mongoose.model('Logs');
+var Logs = mongoose.model('Logs');
 var ccap = require('ccap')();
 var config = require('../../config/env')
 /**
@@ -13,7 +13,7 @@ exports.getCaptcha = function(req, res) {
 	var txt = ary[0];
 	var buf = ary[1];
 	req.session.captcha = txt;
-	// console.log(req.session.captcha)
+	console.log(req.session.captcha)
 	return res.status(200).send(buf);
 };
 
@@ -54,16 +54,17 @@ exports.getUserList = function (req,res,next) {
 
 //添加用户
 exports.addUser = function (req,res) {
-	var nickname = req.body.nickname?req.body.nickname.replace(/(^\s+)|(\s+$)/g, ""):'';
+	console.log(req.body);
+	var userName = req.body.userName?req.body.userName.replace(/(^\s+)|(\s+$)/g, ""):'';
 	var email = req.body.email?req.body.email.replace(/(^\s+)|(\s+$)/g, ""):'';
-	var NICKNAME_REGEXP = /^[(\u4e00-\u9fa5)0-9a-zA-Z\_\s@]+$/;
+	var userName_REGEXP = /^[(\u4e00-\u9fa5)0-9a-zA-Z\_\s@]+$/;
   var EMAIL_REGEXP = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
 	var error_msg;
-	if(nickname === ''){
+	if(userName === ''){
 		error_msg = "呢称不能为空";
 	}else if(email === ''){
 		error_msg = "邮箱地址不能为空";
-	}else if(nickname.length <= 2 || nickname.length >15 || !NICKNAME_REGEXP.test(nickname)){
+	}else if(userName.length <= 2 || userName.length >15 || !userName_REGEXP.test(userName)){
 		//不符合呢称规定.
 		error_msg = "呢称不合法";
 	}else if(email.length <=4 || email.length > 30 || !EMAIL_REGEXP.test(email)){
@@ -73,19 +74,24 @@ exports.addUser = function (req,res) {
 		return res.status(422).send({error_msg:error_msg});
 	}
 
-  var newUser = new User(req.body);
+	var newUser = new User(req.body);
+	
+	console.log(newUser);
   newUser.role = 'user';
 
   newUser.saveAsync().then(function(user) {
 		Logs.create({
-			uid:req.user._id,
-			content:"创建新用户 "+ (user.email || user.nickname),
+			uid:user._id,
+			// uid:req.user._id,
+			content:"创建新用户 "+ (user.email || user.userName),
 			type:"user"
 		});
 		return res.status(200).json({success:true,user_id:user._id});
 	}).catch(function (err) {
-		if(err.errors && err.errors.nickname){
-			err = {error_msg:err.errors.nickname.message}
+		console.log("为什么出错了");
+		console.log(err);
+		if(err.errors && err.errors.userName){
+			err = {error_msg:err.errors.userName.message}
 		}
 		return res.status(500).send(err);
 	});

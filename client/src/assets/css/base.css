@@ -1076,7 +1076,7 @@ a:hover {
 
 input[type="text"], input[type="number"], input[type="password"], textarea {
   padding: 1em;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   background: #fff;
 }
 

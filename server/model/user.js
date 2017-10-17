@@ -8,6 +8,7 @@ var crypto = require('crypto');
 var UserSchema = new Schema({
   "userId": String,
   "userName" : String,
+  "nickname" : String,
   "userPwd": String,
   "orderList" : Array,
 	hashedPassword: String,
@@ -78,7 +79,7 @@ UserSchema
 .virtual('userInfo')
 .get(function() {
   return {
-    'nickname': this.nickname,
+    'userName': this.userName,
     'role': this.role,
     'email': this.email,
     'avatar': this.avatar,

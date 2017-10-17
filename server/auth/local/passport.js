@@ -11,7 +11,7 @@ exports.setup = function (User, config) {
       User.findOne({
         userName: userName.toLowerCase()
       }, function(err, user) {
-
+        console.log(user);
         // console.log(user);
         if (err) return done(err);
         if (!user) {
@@ -20,7 +20,7 @@ exports.setup = function (User, config) {
         }
         if (!user.authenticate(userPwd)) {
           logger.error('登录密码错误',{'userpwd':userPwd});
-          return done(null, false, { error_msg: '用户名或密码错误2.' });
+          return done(null, false, { error_msg: '登录密码错误.' });
         }
 
 				if(user.status === 2){

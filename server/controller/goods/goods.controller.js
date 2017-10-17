@@ -47,13 +47,16 @@ exports.getGoodsList = function (req,res,next) {
 	let pagesize = (parseInt(req.query.pagesize) > 0)?parseInt(req.query.pagesize) : 10 ; //每页有多少数据
 	let skip = (currentPage - 1) * pagesize;
 	console.log(param)
-	Goods.find(param)
-		// .select('title images visit_count comment_count like_count publish_time')
-		.skip(skip)
-		.limit(pagesize)
-		.sort({'salePrice':sort})
-		.exec().then(function (list) {
-			return res.status(200).json({result:list});
+
+
+  Goods.find(param)
+    // .select('title images visit_count comment_count like_count publish_time')
+    .skip(skip)
+    .limit(pagesize)
+    .sort({'salePrice':sort})
+    .exec().then(function (list) {
+  // console.log(list);
+      return res.status(200).json({result:list});
 		}).then(null,function (err) {
 			return next(err);
 		});

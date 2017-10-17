@@ -11,14 +11,14 @@ import apiConfig from '../config/api.config'
 import infiniteScroll from 'vue-infinite-scroll'
 Vue.use(infiniteScroll)
 
-// import axios
-// import Axios from 'axios'
-// import VueAxios from 'vue-axios'
+import Axios from 'axios'
+import VueAxios from 'vue-axios'
 import store from './store'
-// Vue.use(VueAxios, Axios)
+Axios.defaults.baseURL = apiConfig.baseUrl;
+Vue.use(VueAxios, Axios)
+
 Vue.use(Vuex)
 
-// Axios.defaults.baseURL = apiConfig.baseUrl;
 
 // css
 import '@/assets/css/index'

@@ -19,6 +19,7 @@
           <span v-text="nickName" v-if="nickName"></span>
           <!-- <a href="javascript:void(0)" class="navbar-link" v-if="!nickName" @click="loginModalFlag = true">登录</a> -->
           <router-link to="/login">登陆</router-link>
+          <router-link to="/register">注册</router-link>
           <a href="javascript:void(0)" class="navbar-link" @click="logout">退出</a>
           <div class="navbar-cart-container">
             <span class="navbar-cart-count"></span>
